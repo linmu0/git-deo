@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>登录</title>
+<style>
+   body{
+       background: #E1FFFF;
+       text-align: center;
+  }
+   h1{
+       font-size: 50px;
+       padding-top: 50px;
+  }
+   label,input{
+       font-size: 20px;
+      {#/* border-top: 20px;             padding-top: 20px;内边距*/#}
+       margin-top: 15px;/*外边距*/
+       width: 180px;   /*输入框长度*/
+  }
+   button{         /*控制按钮位置大小及间距*/
+       font-size: 20px;
+       margin-left: 50px;
+       margin-right: -20px;
+       /*border-radius: 10px;*/
+       color: deepskyblue;
+  }
+</style>
+</head>
+<body>
+<h1>登录</h1><br>
+<div>
+<form id="StuInfo" action="/login/" method="post">
+    {% csrf_token %}
+   <label>账号:</label>
+   <input type="text" name="account" required autofocus><br>
+   <label>密码:</label>
+{#    required autofocus 表示空白不允许提交#}
+   <input type="password" name="password" required autofocus><br>
+        <span style="color: red ;font-size: 25px;">{{ error_msg }}</span>
+</form>
+
+
+</div>
+<div>
+
+    <a href="http://127.0.0.1:8000/updatePassword"><button>修改密码</button></a>
+   <a href="http://127.0.0.1:8000/enroll"><button >没有账号？注册账号</button><br><br></a>
+   <button style="width: 180px" type="submit" form="StuInfo">登录</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>排序</title>
+<style>
+           table,tbody {
+            display: block;
+            height: 400px;
+            border: 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+            cursor: default;
+        }
+
+        tbody {
+            overflow-y: scroll;
+        }
+
+        table thead,
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table thead {
+            width: calc(100% - 1em)
+        }
+
+        table thead th {
+            background: #84acde;
+            width: 20%;
+        }
+
+        table tbody td {
+            width: 20%;
+            text-align: center;
+        }
+   body{
+       background: #E1FFFF;
+       text-align: center;
+  }
+   h1{
+       font-size: 50px;
+       padding-top: 50px;
+  }
+   table{
+        left: 200px;
+   }
+</style>
+</head>
+<body>
+<h1>排序</h1><br>
+<div>
+<form id="StuInfo" action="/sort/" method="post">
+    {% csrf_token %}
+    <h style="font-size:18px">选择你想排序的方式:</h>
+    <select style="width: 50px ;height:33px" name="choose">
+        <option>学分</option>
+        <option>身高</option>
+    </select>
+    <button style="width: 100px" type="submit" form="StuInfo">查询</button>
+
+</form>
+<br><br>
+<table border="1" style="margin:0 20% 0 25%">
+   <tr>
+     <th>学号</th>
+     <th>姓名</th>
+     <th>电话</th>
+     <th>平均绩点</th>
+     <th>身高</th>
+     <th>家庭住址</th>
+   </tr>
+{% for item in list %}
+   <tr>
+     <td>{{ item.0 }}</td>
+     <td>{{ item.1 }}</td>
+     <td>{{ item.2 }}</td>
+     <td>{{ item.3 }}</td>
+     <td>{{ item.4 }}</td>
+     <td>{{ item.5 }}</td>
+   </tr>
+{% endfor %}
+</table>
+</div>
+<div>
+<br>
+       <a href="http://127.0.0.1:8000/home"><button style="width: 180px;height:33px" >返回主页面</button></a>
+
+</div>
+</body>
+</html>
