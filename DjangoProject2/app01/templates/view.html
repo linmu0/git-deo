@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %} <!-- 加载静态文件标签库 -->
+<head>
+    <meta charset="UTF-8">
+    <title>Ti<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/view.css">
+    <style>
+        .content span{
+            font-size: 40px;
+        }
+        #header{
+            text-align: center;
+        }
+        #header h1{
+            font-size: 60px;
+            padding-top: 50px;
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <canvas id="starfield"></canvas>
+    <div id="header">
+
+            <h1>图形对比展示</h1>
+
+
+        <div></div>
+    </div>
+    <div id="container">
+        <div id="left_side">
+                    <div id="u-pto">
+            <a href="http://127.0.0.1:8000/view/" style="text-decoration: none;font-size: 28px;padding-left: 30%">图形显示</a>
+        </div>
+        </div>
+        <div id="content">
+            <ul id="feed-friend-list">
+
+            </ul>
+        </div>
+        <div id="right_side"></div>
+    </div>
+    <div id="footer"></div>
+</div>
+</body>
+
+
+
+<script src="../static/js/main.js"></script>
+
+<script>
+
+    const listItems = [];
+    const oldPaths = {{ oldPath|safe }};
+    const newPaths = {{ newPath|safe }};
+    {#console.log(oldPaths);#}
+    {% load static %}
+
+for (let i = 0; i < oldPaths.length; i++) {
+    const oldpath = "/static/tmp2/"+oldPaths[i];
+    const newpath = "/static/tmp/"+newPaths[i];
+    console.log(oldpath);
+    console.log(newpath);
+
+    const template = `
+        <li>
+            <div class="f-single-pto">
+                <img src="${ oldpath }">
+                <b><span>----</span></b>
+                <img src="${ newpath }">
+            </div>
+        </li>
+    `;
+
+    listItems.push(template);
+}
+
+document.getElementById('feed-friend-list').innerHTML = listItems.join('');
+</script>
+
+
+
+</html>

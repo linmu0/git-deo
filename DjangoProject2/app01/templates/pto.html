@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>视频帧截取</title>
+</head>
+<body>
+<video id="video" autoplay></video>
+<canvas id="canvas"></canvas>
+<button id="capture">截图</button>
+<script>
+// 获取 video 和 canvas 元素
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+// 获取 CSRF token 的值，并将其设置为请求头
+const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+// 设置 canvas 进行绘图，并设置大小
+const ctx = canvas.getContext('2d');
+canvas.width = 640;
+canvas.height = 480;
+
+// 获取摄像头
+navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+  video.srcObject = stream;
+});
+
+// 点击截图按钮进行截图操作
+document.getElementById('capture').addEventListener('click', () => {
+  // 绘制 video 当前帧到 canvas 上
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // 将 canvas 转换为 base64 格式的图片
+  const imageData = canvas.toDataURL('image/png');
+  // 发送图片数据和 CSRF token 到后端
+  fetch('/api/capture', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken
+    },
+    body: JSON.stringify({ image: imageData })
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <style>
+        #header{
+            text-align: center;
+        }
+        #header h1{
+            font-size: 60px;
+            padding-top: 50px;
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <canvas id="starfield"></canvas>
+    <div id="header">
+        <div class="head">
+            <h1>欢迎使用图形处理系统</h1>
+        </div>
+    </div>
+    <div id="container">
+        <form method="post" enctype="multipart/form-data">
+
+        <div id="left_side">
+            {% csrf_token %}<br>
+            <label for="folder">选择文件夹：</label>
+            <input type="file" id="folder" style=" margin-left:40%;height:30px; " name="folder" webkitdirectory><br>
+
+        </div>
+        <div id="content">
+                <button type="submit" name="choose" value="1">阈值处理</button>
+                <input type="text" style="width: 50px" placeholder="thresh" name="thresh" value="127">
+                <input type="text" style="width: 50px" name="maxval" placeholder="maxval" value="255">
+                <br>
+                <button type="submit" name="choose" value="2">图像翻转</button>
+                <input type="radio" name="choose" value="1"><span style="color: #00ffe1">水平旋转</span>
+                <input type="radio" name="choose" value="2"><span style="color: #00ffe1">垂直旋转</span>
+                <input type="radio" name="choose" value="3"><span style="color: #00ffe1">水平垂直旋转</span>
+                <br>
+                <button type="submit" name="choose" value="3">图像旋转</button>
+                <span style="color: #00ffe1">旋转次数：</span><input type="text" style="width: 50px" name="frequency" value="1">
+                <br>
+                <button type="submit" name="choose" value="4">边缘检测</button>
+                <br>
+                <button type="submit" name="choose" value="5">形态学处理</button>
+                <br>
+                <button type="submit" name="choose" value="6">分割</button>
+                <br>
+                <button type="submit" name="choose" value="7">直方图均衡</button>
+                <br>
+                <button type="submit" name="choose" value="8">直线检测</button>
+                <br>
+                <button type="submit" name="choose" value="9">圆检测</button>
+                <br>
+
+        </div>
+        <div id="right_side"></div>
+        </form>
+    </div>
+
+    <div id="footer">
+
+    </div>
+
+</div>
+</body>
+<script src="../static/js/main.js"></script>
+<script>
+    const folderPathInput = document.querySelector('input[type="file"]');
+    const folderPath = folderPathInput.files[0].webkitRelativePath;
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/path/to/backend");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({ folderPath }));
+</script>
+</html>

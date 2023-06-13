@@ -1,0 +1,74 @@
+*{
+    margin: 0;padding: 0
+}
+#wrap{
+    width:100%;
+    margin:0 auto;
+}
+#header{
+    /* margin:20px;   */
+    height:190px;
+    /*border:solid 1px #0000FF;*/
+}
+#container{
+    position:relative;
+    margin-top:10px;
+    height:500px;
+}
+#left_side{
+    position:absolute;
+    top:0;
+    left:0;
+    /*border:solid 1px #0000FF;*/
+    width:240px;
+    height:100%;
+    padding-top: 100px;
+}
+#content{
+    margin:0 250px 0 250px;
+    /*border:solid 1px #0000FF;*/
+    height:100%;
+    overflow-y: auto;
+}
+#right_side{
+    position:absolute;
+    top:0;
+    right:0;
+    /*border:solid 1px #0000FF;*/
+    width:240px;
+    height:100%;
+}
+#footer{
+    margin-top:20px;
+    height:50px;
+    /*border:solid 1px #0000FF;*/
+}
+#content img{
+    width: 400px;
+    height: 400px;
+}
+canvas{
+	position:fixed;/*设置定位*/
+	top:0;
+	left:0;
+	z-index:-1;/*使画布基于最低层*/
+	background:white;/*画布背景色*/
+}
+#container button {
+  background: #00ffbb;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: 0.3s ease;
+  width: 60%;
+  margin-bottom: 8px;
+    margin-left: 11%;
+}
+
+#container button:hover {
+  background: #93e200;
+}
+
